@@ -1,61 +1,26 @@
 import "./App.css";
-import { useState } from "react";
-import Task from "./Task";
+
+import { useState, useEffect } from "react";
+import Text from "./Text";
 
 function App() {
-  const [todoList, setTodoList] = useState([]);
-  const [newTask, setNewTask] = useState("");
-  const handleChange = (event) => {
-    setNewTask(event.target.value);
-  };
-  const addTask = () => {
-    // const newTodoList = [...todoList, newTask];
-    // setTodoList(newTodoList);
-    const task = {
-      id: todoList.length === 0 ? 1 : todoList[todoList.length - 1].id + 1,
-      taskName: newTask,
-      completed: false,
+  const [showText, setShowText] = useState(false);
+  useEffect(() => {
+    console.log("component mounted");
+    return () => {
+      console.log("component unmounted");
     };
-    setTodoList([...todoList, task]);
-  };
-  const deleteTask = (id) => {
-    const newTodoList = todoList.filter((task) => {
-      return task.id !== id;
-    });
-    setTodoList(newTodoList);
-  };
-
-  const completeTask = (id) => {
-    setTodoList(
-      todoList.map((task) => {
-        if (task.id === id) {
-          return { ...task, completed: true };
-        } else {
-          return task;
-        }
-      })
-    );
-  };
-
+  }, []);
   return (
     <div className='App'>
-      <div className='addTask'>
-        <input onChange={handleChange} />
-        <button onClick={addTask}>Add task</button>
-      </div>
-      <div className='list'>
-        {todoList.map((task) => {
-          return (
-            <Task
-              taskName={task.taskName}
-              id={task.id}
-              completed={task.completed}
-              deleteTask={deleteTask}
-              completeTask={completeTask}
-            />
-          );
-        })}
-      </div>
+      <button
+        onClick={() => {
+          setShowText(!showText);
+        }}
+      >
+        Show Text
+      </button>
+      {showText && <Text />}
     </div>
   );
 }
