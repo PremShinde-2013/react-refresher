@@ -1,26 +1,26 @@
 import "./App.css";
 
-import { useState, useEffect } from "react";
-import Text from "./Text";
-
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./components/Home";
+import Menu from "./components/Menu";
+import Contact from "./components/Contact";
+import { Link } from "react-router-dom";
 function App() {
-  const [showText, setShowText] = useState(false);
-  useEffect(() => {
-    console.log("component mounted");
-    return () => {
-      console.log("component unmounted");
-    };
-  }, []);
   return (
     <div className='App'>
-      <button
-        onClick={() => {
-          setShowText(!showText);
-        }}
-      >
-        Show Text
-      </button>
-      {showText && <Text />}
+      <Router>
+        <div>
+          <Link to='/'>Home</Link>
+          <Link to='/menu'>Menu</Link>
+          <Link to='/contact'>Contact</Link>
+        </div>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/menu' element={<Menu />} />
+          <Route path='/contact' element={<Contact />} />
+          <Route path='*' element={<h1>PAGE NOT FOUND</h1>} />
+        </Routes>
+      </Router>
     </div>
   );
 }
