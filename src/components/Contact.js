@@ -1,7 +1,13 @@
-import React from "react";
-
+import React, { useState } from "react";
+import useToggle from "./useToggle";
 const Contact = () => {
-  return <div>Contact</div>;
+  const [isVisible, toggle] = useToggle();
+  return (
+    <div>
+      <button onClick={toggle}>{isVisible ? "Hide" : "Show"}</button>
+      {isVisible && <h1>Hidden Text</h1>}
+    </div>
+  );
 };
 
 export default Contact;
