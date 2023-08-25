@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import Menu from "./components/Menu";
 import Contact from "./components/Contact";
 import Form from "./components/Form";
+import Cat from "./components/Cat";
 import { Link } from "react-router-dom";
 import { createContext, useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -24,6 +25,7 @@ function App() {
               <Link to='/profile'>Profile</Link>
               <Link to='/contact'>Contact</Link>
               <Link to='/form'>Form</Link>
+              <Link to='/cat'>Cat</Link>
             </div>
             <Routes>
               {/* <Route path='/' element={<Home userName={userName} />} /> */}
@@ -35,6 +37,7 @@ function App() {
               />
               <Route path='/contact' element={<Contact />} />
               <Route path='/form' element={<Form />} />
+              <Route path='/cat' element={<Cat />} />
               <Route path='*' element={<h1>PAGE NOT FOUND</h1>} />
             </Routes>
           </Router>
